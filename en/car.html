@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SceneCars | Car Details</title>
+
+  <link rel="stylesheet" href="../css/car.css"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Anton&display=swap" rel="stylesheet">
+
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+</head>
+<body>
+
+  <header class="navbar">
+
+    <a href="index.html" class="logo">
+      <h3>SCENECARS</h3>
+      <span>PREMIUM CAR RENTAL</span>
+    </a>
+
+    <div class="nav-right">
+
+      <div class="lang-switch">
+        <a href="../car.html">SR</a>
+        <span>/</span>
+        <a href="car.html" class="active">EN</a>
+      </div>
+
+      <a href="index.html#fleet" class="back-btn">
+        BACK TO FLEET
+      </a>
+
+    </div>
+
+  </header>
+
+  <main class="car-page">
+
+    <section class="model-side">
+
+      <div class="model-glow"></div>
+
+      <model-viewer
+        id="carModel"
+        src=""
+        alt="3D car model"
+        camera-controls
+        auto-rotate
+        shadow-intensity="1"
+        exposure="1"
+        environment-image="neutral"
+        camera-orbit="0deg 75deg 6m">
+      </model-viewer>
+
+      <p class="rotate-text">
+        DRAG TO ROTATE
+      </p>
+
+    </section>
+
+    <section class="details-side">
+
+      <span class="car-label" id="carType">
+        PREMIUM CAR
+      </span>
+
+      <h1 id="carName">
+        Ferrari 360 Spider
+      </h1>
+
+      <p class="description" id="carDescription">
+        Italian icon made for cinematic open-top shots,
+        luxury music videos and unforgettable night scenes.
+      </p>
+
+      <div class="price-box">
+
+        <span>STARTING FROM</span>
+
+        <strong id="carPrice">€450</strong>
+
+        <p>per shoot / day</p>
+
+      </div>
+
+      <div class="specs">
+
+        <div>
+          <span>BEST FOR</span>
+          <strong id="carBest">Music Videos</strong>
+        </div>
+
+        <div>
+          <span>STYLE</span>
+          <strong id="carStyle">Luxury / Exotic</strong>
+        </div>
+
+        <div>
+          <span>LOCATION</span>
+          <strong>Belgrade</strong>
+        </div>
+
+      </div>
+
+      <div class="buttons">
+
+        <a href="tel:+381600000000" class="btn primary">
+          CALL NOW
+        </a>
+
+        <a href="index.html#booking" class="btn secondary">
+          BOOK THIS CAR
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <script>
+    const cars = {
+      ferrari360: {
+        name: "Ferrari 360 Spider",
+        type: "ITALIAN SUPERCAR",
+        model: "../models/ferrari360.glb",
+        price: "€450",
+        description: "Italian icon made for cinematic open-top shots, luxury music videos, summer scenes and unforgettable night productions.",
+        best: "Luxury Videos",
+        style: "Italian / Exotic"
+      },
+
+      gallardo: {
+        name: "Lamborghini Gallardo",
+        type: "EXOTIC SUPERCAR",
+        model: "../models/gallardo.glb",
+        price: "€500",
+        description: "Raw exotic energy built for aggressive street scenes, rolling shots, trap videos and premium cinematic productions.",
+        best: "Night Shoots",
+        style: "Aggressive / Exotic"
+      },
+
+      boxster986: {
+        name: "Porsche Boxster 986",
+        type: "RETRO ROADSTER",
+        model: "../models/boxster986.glb",
+        price: "€250",
+        description: "Retro roadster aesthetic inspired by early-2000s visuals, fashion campaigns, lifestyle shots and cinematic summer drives.",
+        best: "Y2K Shoots",
+        style: "Retro / Lifestyle"
+      },
+
+      boxster718: {
+        name: "Porsche Boxster 718",
+        type: "MODERN ROADSTER",
+        model: "../models/boxster718.glb",
+        price: "€350",
+        description: "Modern Porsche elegance designed for clean luxury visuals, premium campaigns, commercials and classy event content.",
+        best: "Commercials",
+        style: "Modern / Premium"
+      }
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const selectedCar = params.get("car") || "ferrari360";
+    const car = cars[selectedCar] || cars.ferrari360;
+
+    document.getElementById("carName").textContent = car.name;
+    document.getElementById("carType").textContent = car.type;
+    document.getElementById("carModel").src = car.model;
+    document.getElementById("carPrice").textContent = car.price;
+    document.getElementById("carDescription").textContent = car.description;
+    document.getElementById("carBest").textContent = car.best;
+    document.getElementById("carStyle").textContent = car.style;
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SceneCars | Detalji Automobila</title>
+
+  <link rel="stylesheet" href="css/car.css"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Anton&display=swap" rel="stylesheet">
+
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+</head>
+<body>
+
+  <header class="navbar">
+
+    <a href="index.html" class="logo">
+      <h3>SCENECARS</h3>
+      <span>PREMIUM AUTOMOBILI</span>
+    </a>
+
+    <div class="nav-right">
+
+      <div class="lang-switch">
+        <a href="car.html" class="active">SR</a>
+        <span>/</span>
+        <a href="en/car.html">EN</a>
+      </div>
+
+      <a href="index.html#fleet" class="back-btn">
+        NAZAD NA VOZILA
+      </a>
+
+    </div>
+
+  </header>
+
+  <main class="car-page">
+
+    <!-- 3D MODEL -->
+
+    <section class="model-side">
+
+      <div class="model-glow"></div>
+
+      <model-viewer
+        id="carModel"
+        src=""
+        alt="3D model automobila"
+        camera-controls
+        auto-rotate
+        shadow-intensity="1"
+        exposure="1"
+        environment-image="neutral"
+        camera-orbit="0deg 75deg 6m">
+      </model-viewer>
+
+      <p class="rotate-text">
+        PREVUCITE MIŠEM ZA ROTACIJU
+      </p>
+
+    </section>
+
+    <!-- DETAILS -->
+
+    <section class="details-side">
+
+      <span class="car-label" id="carType">
+        PREMIUM AUTOMOBIL
+      </span>
+
+      <h1 id="carName">
+        Ferrari 360 Spider
+      </h1>
+
+      <p class="description" id="carDescription">
+        Italijanska ikona savršena za cinematic kadrove,
+        luksuzne spotove i nezaboravne noćne scene.
+      </p>
+
+      <!-- PRICE -->
+
+      <div class="price-box">
+
+        <span>CENA OD</span>
+
+        <strong id="carPrice">€450</strong>
+
+        <p>po snimanju / danu</p>
+
+      </div>
+
+      <!-- SPECS -->
+
+      <div class="specs">
+
+        <div>
+          <span>IDEALAN ZA</span>
+          <strong id="carBest">Spotove</strong>
+        </div>
+
+        <div>
+          <span>STIL</span>
+          <strong id="carStyle">Luxury / Exotic</strong>
+        </div>
+
+        <div>
+          <span>LOKACIJA</span>
+          <strong>Beograd</strong>
+        </div>
+
+      </div>
+
+      <!-- BUTTONS -->
+
+      <div class="buttons">
+
+        <a href="tel:+381600000000" class="btn primary">
+          POZOVI ODMAH
+        </a>
+
+        <a href="index.html#booking" class="btn secondary">
+          REZERVIŠI
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <script>
+
+    const cars = {
+
+      ferrari360: {
+        name: "Ferrari 360 Spider",
+        type: "ITALIJANSKI SUPERAUTO",
+        model: "models/ferrari360.glb",
+        price: "€450",
+
+        description:
+          "Italijanska ikona savršena za cinematic open-top kadrove, luksuzne spotove, letnje scene i nezaboravne noćne produkcije.",
+
+        best: "Luksuzne Spotove",
+        style: "Italian / Exotic"
+      },
+
+      gallardo: {
+        name: "Lamborghini Gallardo",
+        type: "EGZOTIČNI SUPERAUTO",
+        model: "models/gallardo.glb",
+        price: "€500",
+
+        description:
+          "Sirova egzotična energija za agresivne street scene, rolling shotove, trap spotove i premium video produkciju.",
+
+        best: "Noćne Kadrove",
+        style: "Aggressive / Exotic"
+      },
+
+      boxster986: {
+        name: "Porsche Boxster 986",
+        type: "RETRO ROADSTER",
+        model: "models/boxster986.glb",
+        price: "€250",
+
+        description:
+          "Retro roadster estetika inspirisana early-2000s vizualima, fashion kampanjama, lifestyle scenama i cinematic letnjim vožnjama.",
+
+        best: "Y2K Snimanja",
+        style: "Retro / Lifestyle"
+      },
+
+      boxster718: {
+        name: "Porsche Boxster 718",
+        type: "MODERNI ROADSTER",
+        model: "models/boxster718.glb",
+        price: "€350",
+
+        description:
+          "Moderna Porsche elegancija za premium reklame, luksuzne kampanje, commercials i classy video sadržaj.",
+
+        best: "Reklame",
+        style: "Modern / Premium"
+      }
+
+    };
+
+    const params = new URLSearchParams(window.location.search);
+
+    const selectedCar =
+      params.get("car") || "ferrari360";
+
+    const car = cars[selectedCar];
+
+    document.getElementById("carName").textContent =
+      car.name;
+
+    document.getElementById("carType").textContent =
+      car.type;
+
+    document.getElementById("carModel").src =
+      car.model;
+
+    document.getElementById("carPrice").textContent =
+      car.price;
+
+    document.getElementById("carDescription").textContent =
+      car.description;
+
+    document.getElementById("carBest").textContent =
+      car.best;
+
+    document.getElementById("carStyle").textContent =
+      car.style;
+
+  </script>
+
+</body>
+</html>
